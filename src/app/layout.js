@@ -1,6 +1,7 @@
 import { Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const merriWeather = Merriweather({
   subsets: ["latin"],
@@ -14,13 +15,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={merriWeather.className}>
-        <div className="container">
+    <ClerkProvider>
+      <html lang="en">
+        <body className={merriWeather.className}>
           <Navbar />
-          {children}
-        </div>
-      </body>
-    </html>
+          <div className="container">{children}</div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

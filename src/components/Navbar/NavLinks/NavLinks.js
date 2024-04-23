@@ -1,26 +1,27 @@
 import styles from "./NavLinks.module.css";
 import Link from "next/link";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
-const NavbarLinks = [
-  {
-    name: "Home",
-    path: "/home",
-  },
-  {
-    name: "Profile",
-    path: "/rankings",
-  },
-];
-const NavLinks = () => {
+const NavLinks = ({ userId }) => {
   return (
     <ul className={styles.links}>
-      {NavbarLinks.map((link) => {
-        return (
-          <Link href={link.path} key={link.name} className={styles.link}>
-            {link.name}
-          </Link>
-        );
-      })}
+      <SignedOut>
+        <Link href="/sign-in" className={styles.link}>
+          Login
+        </Link>
+        <Link href="/sign-up" className={styles.link}>
+          Register
+        </Link>
+      </SignedOut>
+      <SignedIn>
+        <Link href="/home" className={styles.link}>
+          Home
+        </Link>
+        <Link href="/profile" className={styles.link}>
+          Profile
+        </Link>
+        <UserButton />
+      </SignedIn>
     </ul>
   );
 };
