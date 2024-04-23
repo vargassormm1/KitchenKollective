@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const merriWeather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+});
 
 export const metadata = {
   title: "Kitchen Kollective",
@@ -11,8 +15,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="container">{children}</div>
+      <body className={merriWeather.className}>
+        <div className="container">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );
