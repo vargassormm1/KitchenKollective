@@ -15,10 +15,61 @@ datasource db {
 
 model User {
   userId    Int      @id @default(autoincrement())
-  clerkId    String   @unique
+  clerkId   String   @unique
   fname     String
   lname     String
   username  String   @unique
   email     String   @unique
   imageUrl  String?
+  recipes   Recipe[]
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Recipe {
+  recipeId      Int           @id @default(autoincrement())
+  name          String
+  description   String
+  imageUrl      String?
+  userId        Int
+  user          User          @relation(fields: [userId], references: [userId])
+  ingredients   Ingredient[]
+  instructions  Instruction[]
+  comments      Comment[]
+  likes         Like[]
+}
+
+model Ingredient {
+  ingredientId Int      @id @default(autoincrement())
+  name         String
+  quantity     String?  // Optional, depends on how you want to manage quantities
+  recipeId     Int
+  recipe       Recipe   @relation(fields: [recipeId], references: [recipeId])
+}
+
+model Instruction {
+  instructionId Int     @id @default(autoincrement())
+  stepNumber    Int
+  instruction   String
+  recipeId      Int
+  recipe        Recipe  @relation(fields: [recipeId], references: [recipeId])
+}
+
+model Comment {
+  commentId  Int      @id @default(autoincrement())
+  text       String
+  userId     Int
+  recipeId   Int
+  user       User     @relation(fields: [userId], references: [userId])
+  recipe     Recipe   @relation(fields: [recipeId], references: [recipeId])
+  createdAt  DateTime @default(now())
+}
+
+model Like {
+  likeId     Int      @id @default(autoincrement())
+  userId     Int
+  recipeId   Int
+  user       User     @relation(fields: [userId], references: [userId])
+  recipe     Recipe   @relation(fields: [recipeId], references: [recipeId])
+  createdAt  DateTime @default(now())
 }
