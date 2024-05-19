@@ -29,7 +29,7 @@ const createNewUser = async () => {
     });
   }
 
-  redirect("/home");
+  redirect("/explore");
 };
 
 const NewUser = async () => {

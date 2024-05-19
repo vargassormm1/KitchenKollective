@@ -1,6 +1,6 @@
 import styles from "./NavLinks.module.css";
 import Link from "next/link";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const NavLinks = ({ userId }) => {
   return (
@@ -14,8 +14,8 @@ const NavLinks = ({ userId }) => {
         </Link>
       </SignedOut>
       <SignedIn>
-        <Link href="/home" className={styles.link}>
-          Home
+        <Link href="/explore" className={styles.link}>
+          Explore
         </Link>
         <Link href="/profile" className={styles.link}>
           Profile

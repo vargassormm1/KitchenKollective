@@ -1,0 +1,14 @@
+.container {
+  margin-top: 3%;
+  width: 100%;
+  text-align: center;
+}
+.shareButton {
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.icon {
+  padding-right: 10px;
+}
